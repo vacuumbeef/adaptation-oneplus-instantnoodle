@@ -1,0 +1,14 @@
+{
+  "name": "OnePlus 8",
+  "x-res": 1080,
+  "y-res": 2400,
+  "border-radius": 50,
+  "width": 70,
+  "height": 151,
+  "cutouts": [
+    {
+      "name": "pinhole",
+      "path": "M 30 80 a 50 50 0 1 0 100 0 a 50 50 0 1 0 -100 0 Z"
+    }
+  ]
+}
