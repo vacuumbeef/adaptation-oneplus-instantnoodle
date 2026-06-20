@@ -1,4 +1,4 @@
-Source: adaptation-oneplus-oneplus8
+Source: adaptation-oneplus-instantnoodle
 Maintainer: caligaris <thelookouts@hotmail.com>
 Section: metapackages
 Priority: optional
@@ -6,15 +6,15 @@ Build-Depends: debhelper (>= 10),
                debhelper-compat (= 13),
 Standards-Version: 4.5.0.3
 
-Package: adaptation-oneplus-oneplus8
+Package: adaptation-oneplus-instantnoodle
 Architecture: arm64
 Depends: ${misc:Depends},
          adaptation-hybris-api29-phone,
-         adaptation-oneplus-oneplus8-configs (= ${binary:Version}),
+         adaptation-oneplus-instantnoodle-configs (= ${binary:Version}),
 	 droidian-quirks-firefox-gpu,
-Description: Community adaptation for oneplus-oneplus8 - metapackage
+Description: Community adaptation for oneplus-instantnoodle - metapackage
 
-Package: adaptation-oneplus-oneplus8-configs
+Package: adaptation-oneplus-instantnoodle-configs
 Architecture: arm64
 Depends: ${misc:Depends},
-Description: Community adaptation for oneplus-oneplus8 - adaptation configurations
+Description: Community adaptation for oneplus-instantnoodle - adaptation configurations
