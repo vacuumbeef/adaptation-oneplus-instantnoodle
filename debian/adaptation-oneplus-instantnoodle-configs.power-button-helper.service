@@ -1,0 +1,13 @@
+[Unit]
+Description=Caches brightness value on power button press and restores when turning the screen on
+After=lxc@android.service
+
+[Service]
+Type=simple
+User=droidian
+ExecStart=/bin/bash /usr/bin/power-button-helper.sh
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

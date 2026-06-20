@@ -5,7 +5,7 @@
 
 override_dh_auto_install:
 	dh_auto_install
-	install -D -m 0644 debian/adaptation-oneplus-instantnoodle-configs.brightness-button.service debian/adaptation-oneplus-instantnoodle-configs/usr/lib/systemd/user/brightness-button.service
+	install -D -m 0644 debian/adaptation-oneplus-instantnoodle-configs.power-button-helper.service debian/adaptation-oneplus-instantnoodle-configs/usr/lib/systemd/user/power-button-helper.service
 
 override_dh_installsystemd:
 	dh_installsystemd -padaptation-oneplus-instantnoodle-configs --name=brightness-boot brightness-boot.service --no-start
