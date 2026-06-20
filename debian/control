@@ -11,6 +11,7 @@ Architecture: arm64
 Depends: ${misc:Depends},
          adaptation-hybris-api29-phone,
          adaptation-oneplus-oneplus8-configs (= ${binary:Version}),
+	 droidian-quirks-firefox-gpu,
 Description: Community adaptation for oneplus-oneplus8 - metapackage
 
 Package: adaptation-oneplus-oneplus8-configs
