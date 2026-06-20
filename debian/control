@@ -12,6 +12,7 @@ Depends: ${misc:Depends},
          adaptation-hybris-api29-phone,
          adaptation-oneplus-instantnoodle-configs (= ${binary:Version}),
 	 droidian-quirks-firefox-gpu,
+	 libdroid-hal-lights,
 Description: Community adaptation for oneplus-instantnoodle - metapackage
 
 Package: adaptation-oneplus-instantnoodle-configs
