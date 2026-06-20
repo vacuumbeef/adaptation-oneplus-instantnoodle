@@ -44,6 +44,21 @@ jobs:
 
           sudo chown -R $USER:$USER /tmp/results || true
 
+      - name: Push packages to apt repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git clone https://x-access-token:${{ secrets.APT_REPO_PAT }}@github.com/${{ github.repository_owner }}/droidian-instantnoodle-apt-repo.git
+
+          mkdir -p droidian-instantnoodle-apt-repo/packages
+          cp -v /tmp/results/*.deb droidian-instantnoodle-apt-repo/packages/
+
+          cd droidian-instantnoodle-apt-repo
+          git add packages/*.deb
+          git commit -m "Upload adaptation packages" || exit 0
+          git push
+
       - name: Delete latest release
         run: |
           gh release delete latest --yes --cleanup-tag || true
