@@ -1,13 +1,40 @@
 #!/bin/bash
 
 waitforservice init.svc.camera_service
+echo "[camera-hal-force] init.svc.camera_service is active"
 
-sudo -u droidian bash -c "timeout 5s gst-launch-1.0 droidcamsrc camera_device=0 mode=2 ! tee name=t t. ! queue ! video/x-raw, width=1920, height=1080 ! videoconvert ! videoflip video-direction=auto ! fakesink"
+while ! sudo lxc-attach -n android -- lshal 2>/dev/null | grep -q "android.hardware.camera.provider@2.4::ICameraProvider"; do
+    sleep 1
+done
+echo "[camera-hal-force] found camera.provider"
 
-sudo -u droidian bash -c "timeout 5s gst-launch-1.0 droidcamsrc camera_device=0 mode=2 ! tee name=t t. ! queue ! video/x-raw, width=1920, height=1080 ! videoconvert ! videoflip video-direction=auto ! fakesink"
+while ! ls /run/user/*/wayland-0 >/dev/null 2>&1; do
+    sleep 1
+done
+echo "[camera-hal-force] wayland compositor is running, launching the kickstart"
 
-sudo -u droidian bash -c "timeout 5s gst-launch-1.0 droidcamsrc camera_device=0 mode=2 ! tee name=t t. ! queue ! video/x-raw, width=1920, height=1080 ! videoconvert ! videoflip video-direction=auto ! fakesink"
+kickstart() {
+    sudo -u droidian bash -c "timeout 5s gst-launch-1.0 droidcamsrc camera_device=0 mode=2 ! tee name=t t. ! queue ! video/x-raw, width=1920, height=1080 ! videoconvert ! videoflip video-direction=auto ! fakesink num-buffers=50" > /dev/null 2>&1
+    return $?
+}
 
-sudo -u droidian bash -c "timeout 5s gst-launch-1.0 droidcamsrc camera_device=0 mode=2 ! tee name=t t. ! queue ! video/x-raw, width=1920, height=1080 ! videoconvert ! videoflip video-direction=auto ! fakesink"
+for run in {1..5}; do
+    echo "[camera-hal-force] kickstart run ${run}/5"
+    kickstart
+    EXIT_VALUE=$?
 
-exit 0
+    if [ $EXIT_VALUE -eq 0 ]; then
+        echo "[camera-hal-force] kickstart success"
+        exit 0
+    fi
+
+    echo "[camera-hal-force] run ${run} failed (${EXIT_VALUE})"
+
+    if [ $run -lt 5 ]; then
+        echo "[camera-hal-force] waiting 4 seconds before retrying"
+        sleep 4
+    fi
+done
+
+echo "[camera-hal-force] all kickstart runs failed."
+exit 1
