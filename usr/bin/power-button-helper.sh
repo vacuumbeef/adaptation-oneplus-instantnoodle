@@ -6,7 +6,7 @@ CACHE_FILE="/home/droidian/.cache/backlight-brightness"
 #CACHE_FILE="/tmp/backlight-brightness"
 BRIGHTNESS_FILE="/sys/class/backlight/panel0-backlight/brightness"
 MAX_BRIGHTNESS_FILE="/sys/class/backlight/panel0-backlight/max_brightness"
-MIN_BRIGHTNESS=45
+MIN_BRIGHTNESS=20
 DEFAULT_BRIGHTNESS=500
 
 mkdir -p /home/droidian/.cache
