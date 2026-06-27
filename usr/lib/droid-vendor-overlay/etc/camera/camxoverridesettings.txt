@@ -1,3 +1,0 @@
-# https://mysupport.qualcomm.com/supportforums/s/question/0D5dK00000G6Z8QSAV/vcm-actuator-controllable-only-when-affullsweep1-affullsweep0-cci-invalid-state
-# https://www.cnblogs.com/szsky/articles/10839840.html
-afFullsweep=3
